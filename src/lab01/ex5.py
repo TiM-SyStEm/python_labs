@@ -1,0 +1,5 @@
+fio = input("ФИО: ")
+while "  " in  fio: fio = fio.replace("  ", " ")
+fs = fio.split()
+print(f"Инициалы: {fs[0][0]}{fs[1][0]}{fs[2][0]}.")
+print(f"Длина (символов): {len(fio)-2}")
