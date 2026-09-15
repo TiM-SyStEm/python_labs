@@ -11,7 +11,6 @@ for i in range(len(s)):
 			state = 1
 	elif state == 1:
 		if s[i] in "0123456789":
-			state = 2
 			ds = i - start
 			break
 s = s.split(".")[0][(start+ds+1)::]

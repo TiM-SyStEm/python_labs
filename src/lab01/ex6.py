@@ -1,9 +1,9 @@
 n = int(input("in_1: "))
-m = []
 c = 2
+k = 0
 for i in range(n):
 	inp = input(f"in_{c}: ").split()
-	m.append(1 if inp[3] == "True" else 0)
+	if inp[3] == "True":
+		k += 1
 	c += 1
-s = sum(sorted(m))
-print(f"out: {s} {len(m)-s}")
+print(f"out: {k} {c-2-k}")
