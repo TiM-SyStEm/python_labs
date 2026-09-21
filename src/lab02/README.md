@@ -94,6 +94,7 @@ def flatten(mat: list[list | tuple]) -> list:
             raise TypeError("There are 1 or more elements that aren't list or tuple.")
     return buf
 
+# Test-cases
 print(flatten([[1, 2], [3, 4]]))
 print(flatten([[1, 2], (3, 4, 5)]))
 print(flatten([[1], [], [2, 3]]))
