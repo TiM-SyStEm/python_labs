@@ -57,6 +57,7 @@ def row_sums(mat: list[list[float | int]]) -> list[float]:
 
     return [sum(mat[i]) for i in range(len(mat)) if len(mat[i]) == len(mat[0])]
 
+
 def col_sums(mat: list[list[float | int]]) -> list[float]:
     """
     This function takes matrice and returns list of sums by collums.
