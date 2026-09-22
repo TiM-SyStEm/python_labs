@@ -55,7 +55,7 @@ def row_sums(mat: list[list[float | int]]) -> list[float]:
         if len(r) != len(mat[0]):
             raise ValueError("Input matrice isn't rectangle matrice.")
 
-    return [sum(mat[i]) for i in range(len(mat)) if len(mat[i]) == len(mat[0])]
+    return [sum(mat[i]) for i in range(len(mat))]
 
 
 def col_sums(mat: list[list[float | int]]) -> list[float]:
@@ -76,5 +76,15 @@ def col_sums(mat: list[list[float | int]]) -> list[float]:
     ------
     ValueError: Input matrice isn't rectangle matrice.
     """
+    # Check input matrice if it's rectangly.
+    for r in mat:
+        if len(r) != len(mat[0]):
+            raise ValueError("Input matrice isn't rectangle matrice.")
 
-    return row_sums(transpose(mat))
+    return [sum([mat[i][j] for i in range(len(mat))]) for j in range(len(mat[0]))]
+
+# Test-cases
+print(col_sums([[1, 2, 3], [4, 5, 6]]))
+print(col_sums([[-1, 1], [10, -10]]))
+print(col_sums([[0, 0], [0, 0]]))
+print(col_sums([[1, 2], [3]]))

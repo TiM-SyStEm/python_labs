@@ -191,7 +191,7 @@ print(row_sums([[1, 2], [3]]))
 | Рис 5. Работа функции sums из второго задания |
 
 ### Функция col_sums
-Для упрощения задачи вопользуемся очевидным фактом: сумма значений в строке и столбце опредляется одинаково, из этого следует, что можно транспонировать исходную матрицу и найти суммы по строкам, которые явялются столбцами в исходной матрице.
+Изначально делаем проверку на прямоугольность. Далее итерируемся по длинне строки (по факту по столбцам), и в каждом столбце находим сумму.
 ```py
 def col_sums(mat: list[list[float | int]]) -> list[float]:
     """
@@ -211,8 +211,12 @@ def col_sums(mat: list[list[float | int]]) -> list[float]:
     ------
     ValueError: Input matrice isn't rectangle matrice.
     """
+    # Check input matrice if it's rectangly.
+    for r in mat:
+        if len(r) != len(mat[0]):
+            raise ValueError("Input matrice isn't rectangle matrice.")
 
-    return row_sums(transpose(mat))
+    return [sum([mat[i][j] for i in range(len(mat))]) for j in range(len(mat[0]))]
 
 # Test-cases
 print(col_sums([[1, 2, 3], [4, 5, 6]]))
