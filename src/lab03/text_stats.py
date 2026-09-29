@@ -1,5 +1,4 @@
 import os
-from cmath import e
 from sys import path, stdin
 
 path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -19,13 +18,12 @@ print(f"Всего слов: {len(tokens)}\nУникальных слов: {len(
 if TABLE_MODE:
     max_len = max(len(k) for k in freqs)
 
-    print("слово | частота")
+    print(f"{"слово":<{max_len}}| частота")
     print("-"*( max_len + 9 ))
 
     for item in top_5:
         w, f = item
-        print(w + " " * ( max_len - len(w))
-            + "| " + str(f))
+        print(f"{w:<{max_len}}| {f}")
 else:
     for item in top_5:
         w, f = item
