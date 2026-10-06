@@ -2,7 +2,6 @@ import os
 from sys import path, stdin
 
 path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
-
 from src.lib.text import *
 
 TABLE_MODE = True
