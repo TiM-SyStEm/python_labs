@@ -153,6 +153,7 @@ print(top_n( count_freq(["bb","aa","bb","aa","cc"]), n=2 ))
 
 Через флаг `TABLE_MODE` в коде можно выбрать табличное отображение или обыкновенное. Первая часть статистики общая, вне зависимости от выбранного режима отображения. Далее либо выводим ТОП-5 построчно или в виде таблицы.
 
+Если файл будет пустой то выбросится ошибка `ValueError: file is empty`.
 ```py
 import os
 from sys import path, stdin
@@ -165,6 +166,10 @@ TABLE_MODE = True
 
 text = stdin.read()
 text_nrm = normalize(text)
+
+if text_nrm == "":
+    raise ValueError("file is empty")
+
 tokens = tokenize(text_nrm)
 freqs = count_freq(tokens)
 top_5 = top_n(freqs, 5)

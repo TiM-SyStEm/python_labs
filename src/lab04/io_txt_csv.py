@@ -31,6 +31,7 @@ def write_csv(rows: Iterable[Sequence], path: str | Path,
     header: tuple[str, ...] | None = None) -> None:
     """
     It writes CSV-table with header and rows by path.
+    Output file will contain only header if input rows is empty.
 
     Input data
     -----------
@@ -45,7 +46,7 @@ def write_csv(rows: Iterable[Sequence], path: str | Path,
 
     Exceptions
     ----------
-    ValueError: rows must has similar length.
+    ValueError: rows must be similar length.
     """
     p = Path(path)
     rows = list(rows)
@@ -53,12 +54,15 @@ def write_csv(rows: Iterable[Sequence], path: str | Path,
         w = csv.writer(f)
         if header is not None:
             w.writerow(header)
+            if len(rows) != 0:
+                if len(rows[0]) != len(header):
+                    raise ValueError("rows must be similar length.")
 
-        for r in range(len(rows)):
-            if len(rows[r]) == len(rows[0]):
-                w.writerow(rows[r])
-            else:
-                raise ValueError("rows must has similar length.")
+                for r in range(len(rows)):
+                    if len(rows[r]) == len(rows[0]):
+                        w.writerow(rows[r])
+                    else:
+                        raise ValueError("rows must be similar length.")
 
 def ensure_parent_dir(path: str | Path) -> None:
     """
@@ -77,4 +81,3 @@ def ensure_parent_dir(path: str | Path) -> None:
     parts = path.parts
     if not Path(*parts[:-1]).exists():
         Path(*parts[:-1]).mkdir()
-        return

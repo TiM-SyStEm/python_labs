@@ -7,7 +7,12 @@ from src.lib.text import *
 TABLE_MODE = True
 
 text = stdin.read()
+
 text_nrm = normalize(text)
+
+if text_nrm == "":
+    raise ValueError("file is empty")
+
 tokens = tokenize(text_nrm)
 freqs = count_freq(tokens)
 top_5 = top_n(freqs, 5)

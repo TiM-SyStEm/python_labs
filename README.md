@@ -8,3 +8,5 @@
 [Лаба 2](https://github.com/TiM-SyStEm/python_labs/blob/main/src/lab02/README.md)
 
 [Лаба 3](https://github.com/TiM-SyStEm/python_labs/blob/main/src/lab03/README.md)
+
+[Лаба 3](https://github.com/TiM-SyStEm/python_labs/blob/main/src/lab04/README.md)
