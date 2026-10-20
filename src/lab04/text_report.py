@@ -1,12 +1,7 @@
 import argparse
-import os
 from collections import Counter
-from sys import path, stdin
 
-from io_txt_csv import ensure_parent_dir, read_text, write_csv
-
-path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
-
+from src.lab04.io_txt_csv import ensure_parent_dir, read_text, write_csv
 from src.lib.text import count_freq, normalize, tokenize, top_n
 
 

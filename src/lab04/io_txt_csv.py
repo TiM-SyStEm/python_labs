@@ -49,6 +49,9 @@ def write_csv(rows: Iterable[Sequence], path: str | Path,
     ValueError: rows must be similar length.
     """
     p = Path(path)
+
+    ensure_parent_dir(path)
+
     rows = list(rows)
     with p.open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
@@ -77,7 +80,4 @@ def ensure_parent_dir(path: str | Path) -> None:
     -------
     None
     """
-    path = Path(path)
-    parts = path.parts
-    if not Path(*parts[:-1]).exists():
-        Path(*parts[:-1]).mkdir()
+    Path(path).parent.mkdir(parents=True, exist_ok=True)

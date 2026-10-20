@@ -34,6 +34,24 @@ def read_text(path: str | Path, encoding: str = "utf-8") -> str:
     return p.read_text(encoding=encoding)
 ```
 
+### Функция ensure_parent_dir
+```py
+def ensure_parent_dir(path: str | Path) -> None:
+    """
+    Creates parent directory for file if it wasn't.
+
+    Input data
+    -----------
+    path: str | Path
+        Full path to file!
+
+    Returns
+    -------
+    None
+    """
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+```
+
 ### Функция write_csv
 ```py
 def write_csv(rows: Iterable[Sequence], path: str | Path,
@@ -58,6 +76,9 @@ def write_csv(rows: Iterable[Sequence], path: str | Path,
     ValueError: rows must be similar length.
     """
     p = Path(path)
+
+    ensure_parent_dir(path)
+
     rows = list(rows)
     with p.open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
@@ -74,39 +95,13 @@ def write_csv(rows: Iterable[Sequence], path: str | Path,
                         raise ValueError("rows must be similar length.")
 ```
 
-### Функция ensure_parent_dir
-```py
-def ensure_parent_dir(path: str | Path) -> None:
-    """
-    Creates parent directory for file if it wasn't.
-
-    Input data
-    -----------
-    path: str | Path
-        Full path to file!
-
-    Returns
-    -------
-    None
-    """
-    path = Path(path)
-    parts = path.parts
-    if not Path(*parts[:-1]).exists():
-        Path(*parts[:-1]).mkdir()
-```
-
 ## Задание B и C
 Для смены вида вывода в консоль с обычного на табличный и наоборот требуется поменять значение перменной `TABLE_MODE`.
 ```py
 import argparse
-import os
 from collections import Counter
-from sys import path, stdin
 
-from io_txt_csv import ensure_parent_dir, read_text, write_csv
-
-path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
-
+from src.lab04.io_txt_csv import ensure_parent_dir, read_text, write_csv
 from src.lib.text import count_freq, normalize, tokenize, top_n
 
 
@@ -192,15 +187,10 @@ write_csv([("word","count"),("test",3)], "../../data/lab04/check.csv")  # соз
 ## Задание D
 ```py
 import argparse
-import os
 from collections import Counter
 from pathlib import Path
-from sys import path
 
-from io_txt_csv import ensure_parent_dir, read_text, write_csv
-
-path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
-
+from src.lab04.io_txt_csv import read_text, write_csv
 from src.lib.text import count_freq, normalize, tokenize
 
 
@@ -243,10 +233,7 @@ def ru_key(s: str) -> tuple:
             result.append((1, -ord(ch)))
     return tuple(result)
 
-def build_per_file_rows(
-    paths: list[str],
-    encoding: str = "utf-8"
-) -> list[tuple[str, str, int]]:
+def build_per_file_rows(paths: list[str], encoding: str = "utf-8") -> list[tuple[str, str, int]]:
     """
     It returns strings for report for every file.
     Sorted: file ↑, count ↓, word ↑.
@@ -275,10 +262,7 @@ def build_per_file_rows(
     return rows
 
 
-def build_total_rows(
-    paths: list[str],
-    encoding: str = "utf-8"
-) -> list[tuple[str, int]]:
+def build_total_rows(paths: list[str], encoding: str = "utf-8") -> list[tuple[str, int]]:
     """
     It returns list for total report.
     Sorted: count ↓, word ↑.
@@ -321,13 +305,11 @@ def main():
     per_file_rows = build_per_file_rows(args.inputs, args.encoding)
     per_file_path = "../../data/lab04/report_per_file.csv"
 
-    ensure_parent_dir(per_file_path)
     write_csv(per_file_rows, per_file_path, header=("file", "word", "count"))
 
     total_rows = build_total_rows(args.inputs, args.encoding)
     total_path = "../../data/lab04/report_total.csv"
 
-    ensure_parent_dir(total_path)
     write_csv(total_rows, total_path, header=("word", "count"))
 
     print()
