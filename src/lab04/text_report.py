@@ -1,7 +1,7 @@
 import argparse
 from collections import Counter
 
-from src.lab04.io_txt_csv import ensure_parent_dir, read_text, write_csv
+from src.lab04.io_txt_csv import read_text, write_csv
 from src.lib.text import count_freq, normalize, tokenize, top_n
 
 
@@ -40,7 +40,6 @@ def main():
     tokens = tokenize(nrm_text)
     freqs = dict(sorted_word_counts(count_freq(tokens)))
 
-    ensure_parent_dir(args.out_file)
     write_csv(freqs.items(), args.out_file, header=("word", "count"))
 
     if text != "":
