@@ -245,7 +245,7 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
 Для запуска: `python -m src.lab05.csv_xlsx`
 **1. Проверка функциональности**
 ```py
-csv_to_xlsx("data/lab05/samples/people.csv", "data/lab05/out/people.xlsx")
+csv_to_xlsx("data/lab05/samples/cities.csv", "data/lab05/out/cities.xlsx")
 ```
 
 | ![Скриншот №9](../../images/lab05/img09.png "Рис 9. Выходной XLSX-файл") |
@@ -254,7 +254,7 @@ csv_to_xlsx("data/lab05/samples/people.csv", "data/lab05/out/people.xlsx")
 
 **2. Несуществующий файл**
 ```py
-csv_to_xlsx("data/lab05/samples/people666.csv", "data/lab05/out/people.xlsx")
+csv_to_xlsx("data/lab05/samples/cities666.csv", "data/lab05/out/cities.xlsx")
 ```
 
 | ![Скриншот №10](../../images/lab05/img10.png "Рис 10. Несуществующий файл на входе") |
@@ -263,7 +263,7 @@ csv_to_xlsx("data/lab05/samples/people666.csv", "data/lab05/out/people.xlsx")
 
 **2. Пустой файл**
 ```py
-csv_to_xlsx("data/lab05/samples/people.csv", "data/lab05/out/people.xlsx")
+csv_to_xlsx("data/lab05/samples/cities.csv", "data/lab05/out/cities.xlsx")
 ```
 
 | ![Скриншот №11](../../images/lab05/img11.png "Рис 11. Пустой файл на входе") |
@@ -273,16 +273,16 @@ csv_to_xlsx("data/lab05/samples/people.csv", "data/lab05/out/people.xlsx")
 **2. Неправильный файл**
 Снова уберем заголовок у третьей колонки.
 ```csv
-name,age
-Alice,22,SPB
-Bob,25,Moscow
-Carlos,30,Kazan
-Dana,21,SPB
-Andrey,27,Novosibirsk
+city,country,
+SPB,Russia,5384342
+Moscow,Russia,13010112
+Kazan,Russia,1306953
+Novosibirsk,Russia,1620162
+Yekaterinburg,Russia,1493749
 ```
 
 ```py
-csv_to_xlsx("data/lab05/samples/people.csv", "data/lab05/out/people.xlsx")
+csv_to_xlsx("data/lab05/samples/cities.csv", "data/lab05/out/cities.xlsx")
 ```
 
 | ![Скриншот №11](../../images/lab05/img12.png "Рис 12. Неправильный файл на входе") |
