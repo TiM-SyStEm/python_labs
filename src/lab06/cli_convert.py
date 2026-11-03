@@ -10,7 +10,7 @@ def main():
 
     p1 = sub.add_parser("json2csv", help="Convert JSON-file to CSV-file.")
     p1.add_argument("--in", dest="input", required=True, help="")
-    p1.add_argument("--out", dest="output", required=True, )
+    p1.add_argument("--out", dest="output", required=True)
 
     p2 = sub.add_parser("csv2json", help="Convert CSV-file to JSON-file.")
     p2.add_argument("--in", dest="input", required=True)
