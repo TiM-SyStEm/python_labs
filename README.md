@@ -12,3 +12,5 @@
 [Лаба 4](https://github.com/TiM-SyStEm/python_labs/blob/main/src/lab04/README.md)
 
 [Лаба 5](https://github.com/TiM-SyStEm/python_labs/blob/main/src/lab05/README.md)
+
+[Лаба 6](https://github.com/TiM-SyStEm/python_labs/blob/main/src/lab06/README.md)
