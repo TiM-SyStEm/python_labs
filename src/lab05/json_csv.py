@@ -4,6 +4,7 @@ import json
 from src.lab05.csv_xlsx import csv_to_xlsx
 
 
+
 def json_to_csv(json_path: str, csv_path: str) -> None:
     """
     Read JSON-file and convert to CSV-file.
